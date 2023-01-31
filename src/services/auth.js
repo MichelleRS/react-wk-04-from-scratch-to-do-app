@@ -13,8 +13,14 @@ export async function authUser(email, password, type) {
   } else {
     response = await client.auth.signIn({ email, password });
   }
-  // TODO add error handling for user
+  // error handling for user
+  if (response.error) {
+    throw response.error;
+  }
   return response.user;
 }
 
-// TODO add signOut()
+// sign user out
+export async function signOut() {
+  await client.auth.signOut();
+}
