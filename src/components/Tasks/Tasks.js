@@ -3,12 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { useUser } from '../../context/UserContext.js';
 
 export default function Tasks() {
-  const { user } = useUser;
+  const { user } = useUser();
 
-  // send not authorized users to sign in page
+  // if user is unauthorized, redirect to auth/
   if (!user) {
     return <Redirect to="/auth/sign-in" />;
   }
+
+  //   display tasks for authorized users
   return (
     <div>
       <p>Tasks Go Here</p>
