@@ -1,10 +1,22 @@
-const { createContext, useState } = require('react');
+import { getUser } from '../services/auth.js';
+
+const { createContext, useState, useContext } = require('react');
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const currentUser = getUser();
+  const [user, setUser] = useState(currentUser);
   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
 };
 
-export { UserContext, UserProvider };
+const useUser = () => {
+  const data = useContext(UserContext);
+
+  if (!data) {
+    throw new Error('useUser error');
+  }
+  return data;
+};
+
+export { useUser, UserProvider };
