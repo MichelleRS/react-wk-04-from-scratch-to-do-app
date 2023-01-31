@@ -1,6 +1,6 @@
 import { client } from './client';
 
-export default function getUser() {
+export function getUser() {
   return client.auth.currentUser;
 }
 
