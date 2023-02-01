@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useUser } from '../../context/UserContext.js';
+import TasksList from './TasksList.js';
 
 export default function Tasks() {
   const { user } = useUser();
@@ -13,7 +14,9 @@ export default function Tasks() {
   //   display tasks for authorized users
   return (
     <div>
-      <p>Tasks Go Here</p>
+      <h1>Tasks</h1>
+      {/* <TaskForm /> */}
+      <TasksList />
     </div>
   );
 }
