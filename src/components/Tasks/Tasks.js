@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { useUser } from '../../context/UserContext.js';
+import TasksForm from './TasksForm.js';
 import TasksList from './TasksList.js';
 
 export default function Tasks() {
@@ -15,7 +16,7 @@ export default function Tasks() {
   return (
     <div>
       <h1>Tasks</h1>
-      {/* <TaskForm /> */}
+      <TasksForm />
       <TasksList />
     </div>
   );
