@@ -1,11 +1,15 @@
 import { createContext, useEffect, useState } from 'react';
 import { getTasksList } from '../services/tasks.js';
+import { useUser } from './UserContext.js';
 
 const TasksContext = createContext();
 
 const TasksProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);
+  const { user } = useUser();
 
+  // get task list
+  // pass user in dependency array to restart list based on user
   useEffect(() => {
     const fetchTasks = async () => {
       try {
@@ -16,7 +20,8 @@ const TasksProvider = ({ children }) => {
       }
     };
     fetchTasks();
-  }, []);
+  }, [user]);
+
   return <TasksContext.Provider value={{ tasks, setTasks }}>{children}</TasksContext.Provider>;
 };
 
